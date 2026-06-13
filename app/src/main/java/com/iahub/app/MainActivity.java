@@ -17,11 +17,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Habilitar cookies globalmente
-        CookieManager.getInstance().setAcceptCookie(true);
-        CookieManager.getInstance().setAcceptThirdPartyCookies(webView != null ? webView : new WebView(this), true);
-
         webView = findViewById(R.id.webview);
+
+        // Habilitar cookies (incluindo terceiros)
+        CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.setAcceptCookie(true);
+        cookieManager.setAcceptThirdPartyCookies(webView, true);
 
         WebSettings settings = webView.getSettings();
 
@@ -34,30 +35,23 @@ public class MainActivity extends AppCompatActivity {
         settings.setLoadWithOverviewMode(true);
         settings.setUseWideViewPort(true);
 
-        // User-Agent idêntico ao Chrome real no Android
+        // User-Agent idêntico ao Chrome real no Android (passa verificações)
         settings.setUserAgentString(
             "Mozilla/5.0 (Linux; Android 13; Pixel 7) " +
             "AppleWebKit/537.36 (KHTML, like Gecko) " +
             "Chrome/124.0.0.0 Mobile Safari/537.36"
         );
 
-        // Configurações que ajudam a passar verificações
+        // Configurações extras para passar verificações de humano
         settings.setJavaScriptCanOpenWindowsAutomatically(true);
         settings.setMediaPlaybackRequiresUserGesture(false);
         settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         settings.setAllowContentAccess(true);
         settings.setAllowFileAccess(true);
-        settings.setGeolocationEnabled(false);
         settings.setSupportZoom(true);
         settings.setBuiltInZoomControls(false);
         settings.setDisplayZoomControls(false);
-
-        // Cache
         settings.setCacheMode(WebSettings.LOAD_DEFAULT);
-        settings.setAppCacheEnabled(true);
-
-        // Cookies
-        CookieManager.getInstance().setAcceptThirdPartyCookies(webView, true);
 
         webView.setWebViewClient(new WebViewClient() {
             @Override
