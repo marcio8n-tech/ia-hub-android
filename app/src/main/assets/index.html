@@ -12,507 +12,117 @@
       background: #080811;
       color: #fff;
       min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* HEADER */
-    header {
-      background: linear-gradient(160deg, #0f0820 0%, #0a1628 100%);
-      padding: 40px 20px 24px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: -80px; left: 50%;
-      transform: translateX(-50%);
-      width: 300px; height: 300px;
-      background: radial-gradient(ellipse, #7c3aed44, transparent 70%);
-    }
-
-    .app-icon {
-      width: 80px;
-      height: 80px;
-      border-radius: 22px;
-      margin: 0 auto 14px;
-      display: block;
-      box-shadow: 0 8px 30px #7c3aed66;
-      border: 2px solid #7c3aed44;
-    }
-
-    header h1 {
-      font-size: 1.9rem;
-      font-weight: 900;
-      background: linear-gradient(90deg, #a78bfa, #60a5fa, #34d399);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.5px;
-    }
-
-    header p {
-      color: #64748b;
-      font-size: 0.82rem;
-      margin-top: 5px;
-    }
-
-    /* FILTROS */
-    .filters {
-      display: flex;
-      gap: 8px;
-      padding: 16px 16px 8px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    .filters::-webkit-scrollbar { display: none; }
-
-    .filter-btn {
-      background: #1e1e2e;
-      border: 1px solid #ffffff12;
-      color: #64748b;
-      padding: 7px 14px;
-      border-radius: 99px;
-      font-size: 0.78rem;
-      white-space: nowrap;
-      cursor: pointer;
-      transition: all 0.2s;
-      flex-shrink: 0;
-    }
-    .filter-btn.active {
-      background: #7c3aed;
-      border-color: #7c3aed;
-      color: #fff;
-    }
-
-    /* SECTION */
-    .section-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: #334155;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      padding: 18px 16px 8px;
-    }
-
-    /* GRID */
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      padding: 0 16px 16px;
-    }
-
-    /* CARD */
-    .card {
-      background: #12121f;
-      border: 1px solid #ffffff0d;
-      border-radius: 18px;
-      padding: 16px 14px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
+    }
+
+    .logo {
+      font-size: 4rem;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      background: linear-gradient(90deg, #a78bfa, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+    }
+
+    p.subtitle {
+      color: #475569;
+      font-size: 0.88rem;
+      margin-bottom: 50px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      width: 100%;
+      max-width: 340px;
+      padding: 22px 24px;
+      border-radius: 20px;
       text-decoration: none;
-      color: inherit;
+      color: #fff;
+      margin-bottom: 18px;
       transition: transform 0.15s, box-shadow 0.15s;
       position: relative;
       overflow: hidden;
-      cursor: pointer;
     }
 
-    .card:active {
-      transform: scale(0.96);
+    .btn:active { transform: scale(0.97); }
+
+    .btn-gemini {
+      background: linear-gradient(135deg, #1a0a2e, #0d1a3a);
+      border: 1px solid #7c3aed55;
+      box-shadow: 0 8px 30px #7c3aed22;
     }
 
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--accent, #7c3aed);
-      border-radius: 2px 2px 0 0;
+    .btn-copilot {
+      background: linear-gradient(135deg, #0a1628, #0a2040);
+      border: 1px solid #2563eb55;
+      box-shadow: 0 8px 30px #2563eb22;
     }
 
-    .card.wide {
-      grid-column: span 2;
-      flex-direction: row;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .card-icon {
-      font-size: 2rem;
-      width: 50px;
-      height: 50px;
-      background: #1a1a2e;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .btn-icon {
+      font-size: 2.6rem;
       flex-shrink: 0;
     }
 
-    .card-name {
-      font-size: 0.88rem;
-      font-weight: 700;
-      margin-bottom: 2px;
+    .btn-text .name {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 3px;
     }
 
-    .card-desc {
-      font-size: 0.72rem;
-      color: #475569;
-      line-height: 1.4;
+    .btn-text .desc {
+      font-size: 0.78rem;
+      color: #64748b;
     }
 
-    .card-badge {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 600;
-      padding: 2px 7px;
-      border-radius: 99px;
-      margin-top: 2px;
+    .btn-arrow {
+      margin-left: auto;
+      font-size: 1.3rem;
+      opacity: 0.5;
     }
 
-    .badge-free  { background: #052e16; color: #4ade80; }
-    .badge-fast  { background: #2d1800; color: #fbbf24; }
-    .badge-image { background: #2e1065; color: #c084fc; }
-    .badge-local { background: #1a1a00; color: #facc15; }
-    .badge-voice { background: #1a0a2e; color: #e879f9; }
-    .badge-video { background: #1f0a0a; color: #f87171; }
-    .badge-anon  { background: #0a1f0a; color: #86efac; }
-
-    .card-arrow {
-      font-size: 0.72rem;
-      color: var(--accent, #7c3aed);
-      font-weight: 700;
-      margin-top: auto;
-    }
-
-    /* HIDDEN */
-    .card.hidden { display: none; }
-    .section-label.hidden { display: none; }
-
-    /* FOOTER */
     footer {
-      text-align: center;
+      margin-top: 50px;
       color: #1e293b;
       font-size: 0.72rem;
-      padding: 20px;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <img class="app-icon" src="https://media.base44.com/images/public/6a2cbe311b54a20d708aa68c/1257e8cf5_generated_image.png" alt="IA Hub">
+  <div class="logo">🤖</div>
   <h1>IA Hub</h1>
-  <p>30+ IAs gratuitas no seu bolso</p>
-</header>
+  <p class="subtitle">Escolha sua IA</p>
 
-<!-- FILTROS -->
-<div class="filters">
-  <button class="filter-btn active" onclick="filter('all',this)">🌐 Todas</button>
-  <button class="filter-btn" onclick="filter('chat',this)">💬 Chat</button>
-  <button class="filter-btn" onclick="filter('image',this)">🖼️ Imagem</button>
-  <button class="filter-btn" onclick="filter('voice',this)">🎤 Voz</button>
-  <button class="filter-btn" onclick="filter('local',this)">🏠 Local</button>
-  <button class="filter-btn" onclick="filter('video',this)">🎬 Vídeo</button>
-  <button class="filter-btn" onclick="filter('code',this)">💻 Código</button>
-</div>
-
-<!-- CHAT IA -->
-<div class="section-label" data-section="chat">💬 Chat com IA</div>
-<div class="grid">
-
-  <a class="card wide" href="https://chat.deepseek.com" target="_blank" data-cat="chat" style="--accent:#60a5fa">
-    <div class="card-icon">🔵</div>
-    <div>
-      <div class="card-name">DeepSeek</div>
-      <div class="card-desc">Rival do GPT-4, grátis e sem limite. Ótimo pra raciocínio e código.</div>
-      <span class="card-badge badge-free">✅ Grátis</span>
+  <a class="btn btn-gemini" href="https://gemini.google.com" target="_blank">
+    <div class="btn-icon">🟣</div>
+    <div class="btn-text">
+      <div class="name">Google Gemini</div>
+      <div class="desc">IA do Google — grátis com sua conta</div>
     </div>
+    <div class="btn-arrow">›</div>
   </a>
 
-  <a class="card" href="https://gemini.google.com" target="_blank" data-cat="chat" style="--accent:#a78bfa">
-    <div class="card-icon">🟣</div>
-    <div class="card-name">Gemini</div>
-    <div class="card-desc">IA do Google com acesso à internet em tempo real.</div>
-    <span class="card-badge badge-free">✅ Grátis</span>
-    <div class="card-arrow">Abrir →</div>
-  </a>
-
-  <a class="card" href="https://copilot.microsoft.com" target="_blank" data-cat="chat image" style="--accent:#38bdf8">
-    <div class="card-icon">🔷</div>
-    <div class="card-name">Copilot</div>
-    <div class="card-desc">GPT-4 grátis + DALL-E 3 pra imagens.</div>
-    <span class="card-badge badge-image">🖼️ Imagens</span>
-    <div class="card-arrow">Abrir →</div>
-  </a>
-
-  <a class="card" href="https://claude.ai" target="_blank" data-cat="chat" style="--accent:#f97316">
-    <div class="card-icon">🟤</div>
-    <div class="card-name">Claude</div>
-    <div class="card-desc">Excelente pra textos longos e análise de documentos.</div>
-    <span class="card-badge badge-free">✅ Grátis</span>
-    <div class="card-arrow">Abrir →</div>
-  </a>
-
-  <a class="card" href="https://huggingface.co/chat" target="_blank" data-cat="chat local" style="--accent:#fbbf24">
-    <div class="card-icon">🤗</div>
-    <div class="card-name">HuggingChat</div>
-    <div class="card-desc">Llama, Mixtral, Qwen e mais. Sem cadastro.</div>
-    <span class="card-badge badge-free">✅ Grátis</span>
-    <div class="card-arrow">Abrir →</div>
-  </a>
-
-  <a class="card" href="https://console.groq.com/playground" target="_blank" data-cat="chat" style="--accent:#fbbf24">
-    <div class="card-icon">⚡</div>
-    <div class="card-name">Groq</div>
-    <div class="card-desc">O mais rápido do mundo. Sua chave já está ativa!</div>
-    <span class="card-badge badge-fast">⚡ Ultra rápido</span>
-    <div class="card-arrow">Abrir →</div>
-  </a>
-
-  <a class="card" href="https://duckduckgo.com/aichat" target="_blank" data-cat="chat" style="--accent:#34d399">
-    <div class="card-icon">🦆</div>
-    <div class="card-name">DuckDuckGo AI</div>
-    <div class="card-desc">GPT-4 e Claude grátis e 100% anônimos.</div>
-    <span class="card-badge badge-anon">🔒 Anônimo</span>
-    <div class="card-arrow">Abrir →</div>
-  </a>
-
-  <a class="card" href="https://www.perplexity.ai" target="_blank" data-cat="chat" style="--accent:#38bdf8">
-    <div class="card-icon">🔍</div>
-    <div class="card-name">Perplexity</div>
-    <div class="card-desc">IA que pesquisa na web e cita as fontes.</div>
-    <span class="card-badge badge-free">✅ Grátis</span>
-    <div class="card-arrow">Abrir →</div>
-  </a>
-
-</div>
-
-<!-- LOCAL / SELF-HOST -->
-<div class="section-label" data-section="local">🏠 Self-Hosted — Rode no Seu PC</div>
-<div class="grid">
-
-  <a class="card wide" href="https://ollama.com" target="_blank" data-cat="local chat" style="--accent:#86efac">
-    <div class="card-icon">🦙</div>
-    <div>
-      <div class="card-name">Ollama ⭐ 173k</div>
-      <div class="card-desc">IA 100% offline no seu PC. Llama, DeepSeek, Gemma e mais.</div>
-      <span class="card-badge badge-local">🏠 Offline</span>
+  <a class="btn btn-copilot" href="https://copilot.microsoft.com" target="_blank">
+    <div class="btn-icon">🔷</div>
+    <div class="btn-text">
+      <div class="name">Microsoft Copilot</div>
+      <div class="desc">GPT-4 grátis + geração de imagens</div>
     </div>
+    <div class="btn-arrow">›</div>
   </a>
 
-  <a class="card" href="https://github.com/open-webui/open-webui" target="_blank" data-cat="local chat" style="--accent:#60a5fa">
-    <div class="card-icon">🖥️</div>
-    <div class="card-name">Open WebUI</div>
-    <div class="card-desc">Interface ChatGPT pra Ollama. ⭐ 141k</div>
-    <span class="card-badge badge-local">🏠 Local</span>
-    <div class="card-arrow">GitHub →</div>
-  </a>
-
-  <a class="card" href="https://github.com/xtekky/gpt4free" target="_blank" data-cat="local chat" style="--accent:#f472b6">
-    <div class="card-icon">🆓</div>
-    <div class="card-name">GPT4Free</div>
-    <div class="card-desc">GPT-4, Claude, Gemini grátis sem API key. ⭐ 66k</div>
-    <span class="card-badge badge-free">✅ Sem key</span>
-    <div class="card-arrow">GitHub →</div>
-  </a>
-
-  <a class="card" href="https://github.com/danny-avila/LibreChat" target="_blank" data-cat="local chat" style="--accent:#f97316">
-    <div class="card-icon">💬</div>
-    <div class="card-name">LibreChat</div>
-    <div class="card-desc">Clone ChatGPT com Groq, Gemini, Claude. ⭐ 38k</div>
-    <span class="card-badge badge-local">🏠 Self-host</span>
-    <div class="card-arrow">GitHub →</div>
-  </a>
-
-  <a class="card" href="https://github.com/janhq/jan" target="_blank" data-cat="local chat" style="--accent:#e879f9">
-    <div class="card-icon">🖱️</div>
-    <div class="card-name">Jan App</div>
-    <div class="card-desc">ChatGPT offline pra Windows/Mac/Linux. ⭐ 42k</div>
-    <span class="card-badge badge-local">🏠 Desktop</span>
-    <div class="card-arrow">GitHub →</div>
-  </a>
-
-  <a class="card" href="https://github.com/mudler/LocalAI" target="_blank" data-cat="local" style="--accent:#34d399">
-    <div class="card-icon">🏗️</div>
-    <div class="card-name">LocalAI</div>
-    <div class="card-desc">Texto, voz, imagem e vídeo sem GPU. ⭐ 46k</div>
-    <span class="card-badge badge-local">🏠 Sem GPU</span>
-    <div class="card-arrow">GitHub →</div>
-  </a>
-
-</div>
-
-<!-- IMAGEM -->
-<div class="section-label" data-section="image">🖼️ Geração de Imagens</div>
-<div class="grid">
-
-  <a class="card" href="https://www.bing.com/images/create" target="_blank" data-cat="image" style="--accent:#c084fc">
-    <div class="card-icon">🎨</div>
-    <div class="card-name">Bing Creator</div>
-    <div class="card-desc">DALL-E 3 grátis via Microsoft. Sem limite diário.</div>
-    <span class="card-badge badge-image">🖼️ DALL-E 3</span>
-    <div class="card-arrow">Criar →</div>
-  </a>
-
-  <a class="card" href="https://ideogram.ai" target="_blank" data-cat="image" style="--accent:#a78bfa">
-    <div class="card-icon">✍️</div>
-    <div class="card-name">Ideogram</div>
-    <div class="card-desc">Melhor pra imagens com texto. Logos e cartazes perfeitos.</div>
-    <span class="card-badge badge-image">✅ Texto perfeito</span>
-    <div class="card-arrow">Criar →</div>
-  </a>
-
-  <a class="card" href="https://playgroundai.com" target="_blank" data-cat="image" style="--accent:#34d399">
-    <div class="card-icon">🛝</div>
-    <div class="card-name">Playground AI</div>
-    <div class="card-desc">500 imagens/dia grátis com canvas de edição.</div>
-    <span class="card-badge badge-image">🖼️ 500/dia</span>
-    <div class="card-arrow">Criar →</div>
-  </a>
-
-  <a class="card" href="https://stablediffusionweb.com" target="_blank" data-cat="image" style="--accent:#f472b6">
-    <div class="card-icon">🌌</div>
-    <div class="card-name">Stable Diffusion</div>
-    <div class="card-desc">Gera imagens artísticas no navegador. Open source.</div>
-    <span class="card-badge badge-free">✅ Grátis</span>
-    <div class="card-arrow">Criar →</div>
-  </a>
-
-</div>
-
-<!-- VOZ -->
-<div class="section-label" data-section="voice">🎤 Voz e Áudio</div>
-<div class="grid">
-
-  <a class="card" href="https://elevenlabs.io" target="_blank" data-cat="voice" style="--accent:#fbbf24">
-    <div class="card-icon">🔊</div>
-    <div class="card-name">ElevenLabs</div>
-    <div class="card-desc">Voz mais realista. 10k chars/mês grátis. Clona vozes.</div>
-    <span class="card-badge badge-voice">🎤 Realista</span>
-    <div class="card-arrow">Abrir →</div>
-  </a>
-
-  <a class="card" href="https://console.groq.com/playground" target="_blank" data-cat="voice" style="--accent:#fbbf24">
-    <div class="card-icon">🎧</div>
-    <div class="card-name">Groq Whisper</div>
-    <div class="card-desc">Transcrição ultrarrápida de áudio. Sua key ativa!</div>
-    <span class="card-badge badge-fast">⚡ Rápido</span>
-    <div class="card-arrow">Abrir →</div>
-  </a>
-
-  <a class="card" href="https://github.com/travisvn/openai-edge-tts" target="_blank" data-cat="voice local" style="--accent:#e879f9">
-    <div class="card-icon">🗣️</div>
-    <div class="card-name">Edge TTS</div>
-    <div class="card-desc">Substitui ElevenLabs gratuitamente. Self-hosted.</div>
-    <span class="card-badge badge-local">🏠 Local</span>
-    <div class="card-arrow">GitHub →</div>
-  </a>
-
-  <a class="card" href="https://github.com/canopylabs/orpheus-tts" target="_blank" data-cat="voice local" style="--accent:#c084fc">
-    <div class="card-icon">🎙️</div>
-    <div class="card-name">Orpheus TTS</div>
-    <div class="card-desc">Voz com emoção humana. Open source e gratuito.</div>
-    <span class="card-badge badge-voice">🎤 Emocional</span>
-    <div class="card-arrow">GitHub →</div>
-  </a>
-
-</div>
-
-<!-- VÍDEO -->
-<div class="section-label" data-section="video">🎬 Vídeo com IA</div>
-<div class="grid">
-
-  <a class="card" href="https://www.kapwing.com/ai" target="_blank" data-cat="video" style="--accent:#f87171">
-    <div class="card-icon">🎥</div>
-    <div class="card-name">Kapwing AI</div>
-    <div class="card-desc">Editor de vídeo com IA no navegador. Legendas automáticas.</div>
-    <span class="card-badge badge-free">✅ Grátis</span>
-    <div class="card-arrow">Abrir →</div>
-  </a>
-
-  <a class="card" href="https://clipchamp.com" target="_blank" data-cat="video" style="--accent:#38bdf8">
-    <div class="card-icon">✂️</div>
-    <div class="card-name">Clipchamp</div>
-    <div class="card-desc">Editor Microsoft com avatar e narração de voz com IA.</div>
-    <span class="card-badge badge-free">✅ Grátis</span>
-    <div class="card-arrow">Abrir →</div>
-  </a>
-
-  <a class="card wide" href="https://github.com/IgorShadurin/app.yumcut.com" target="_blank" data-cat="video local" style="--accent:#f97316">
-    <div class="card-icon">🎬</div>
-    <div>
-      <div class="card-name">YumCut — Texto pra Vídeo</div>
-      <div class="card-desc">Gera vídeos TikTok/Reels a partir de texto. Self-hosted com FFmpeg. ⭐ 694</div>
-      <span class="card-badge badge-video">🎬 Texto→Vídeo</span>
-    </div>
-  </a>
-
-</div>
-
-<!-- CÓDIGO -->
-<div class="section-label" data-section="code">💻 Código e Automação</div>
-<div class="grid">
-
-  <a class="card" href="https://github.com/features/copilot" target="_blank" data-cat="code" style="--accent:#86efac">
-    <div class="card-icon">👾</div>
-    <div class="card-name">GitHub Copilot</div>
-    <div class="card-desc">2.000 completions/mês grátis no VS Code.</div>
-    <span class="card-badge badge-free">✅ Grátis</span>
-    <div class="card-arrow">Ativar →</div>
-  </a>
-
-  <a class="card" href="https://dify.ai" target="_blank" data-cat="code local" style="--accent:#4ade80">
-    <div class="card-icon">🧩</div>
-    <div class="card-name">Dify</div>
-    <div class="card-desc">Crie apps de IA sem código. Self-hosted open source.</div>
-    <span class="card-badge badge-local">🏠 Self-host</span>
-    <div class="card-arrow">Abrir →</div>
-  </a>
-
-  <a class="card" href="https://n8n.io" target="_blank" data-cat="code local" style="--accent:#f97316">
-    <div class="card-icon">⚙️</div>
-    <div class="card-name">n8n</div>
-    <div class="card-desc">Automação com IA. Alternativa grátis ao Zapier.</div>
-    <span class="card-badge badge-free">✅ Grátis</span>
-    <div class="card-arrow">Abrir →</div>
-  </a>
-
-  <a class="card" href="https://github.com/Mintplex-Labs/anything-llm" target="_blank" data-cat="code local chat" style="--accent:#a78bfa">
-    <div class="card-icon">📚</div>
-    <div class="card-name">AnythingLLM</div>
-    <div class="card-desc">IA que conversa com seus documentos localmente. ⭐ 61k</div>
-    <span class="card-badge badge-local">🏠 Local</span>
-    <div class="card-arrow">GitHub →</div>
-  </a>
-
-</div>
-
-<footer>🤖 IA Hub — Feito com ❤️ | marcio8n-tech</footer>
-
-<script>
-  function filter(cat, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    document.querySelectorAll('.card').forEach(card => {
-      if (cat === 'all') {
-        card.classList.remove('hidden');
-      } else {
-        const cats = (card.dataset.cat || '').split(' ');
-        cats.includes(cat) ? card.classList.remove('hidden') : card.classList.add('hidden');
-      }
-    });
-
-    document.querySelectorAll('.section-label').forEach(label => {
-      label.style.display = cat === 'all' ? '' : 'none';
-    });
-  }
-</script>
+  <footer>IA Hub • marcio8n-tech</footer>
 
 </body>
 </html>
