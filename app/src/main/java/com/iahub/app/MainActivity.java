@@ -1,16 +1,22 @@
 package com.iahub.app;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.webkit.CookieManager;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.webkit.WebChromeClient;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     private WebView webView;
+    private ValueCallback<Uri[]> fileUploadCallback;
+    private static final int FILE_CHOOSER_REQUEST = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,39 +25,33 @@ public class MainActivity extends AppCompatActivity {
 
         webView = findViewById(R.id.webview);
 
-        // Habilitar cookies (incluindo terceiros)
+        // Cookies
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
         cookieManager.setAcceptThirdPartyCookies(webView, true);
 
         WebSettings settings = webView.getSettings();
-
-        // JavaScript e storage
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);
         settings.setDatabaseEnabled(true);
-
-        // Viewport
         settings.setLoadWithOverviewMode(true);
         settings.setUseWideViewPort(true);
+        settings.setAllowFileAccess(true);
+        settings.setAllowContentAccess(true);
+        settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        settings.setCacheMode(WebSettings.LOAD_DEFAULT);
+        settings.setSupportZoom(true);
+        settings.setBuiltInZoomControls(false);
+        settings.setDisplayZoomControls(false);
+        settings.setJavaScriptCanOpenWindowsAutomatically(true);
+        settings.setMediaPlaybackRequiresUserGesture(false);
 
-        // User-Agent idêntico ao Chrome real no Android (passa verificações)
+        // User-Agent Chrome real — passa verificações de humano
         settings.setUserAgentString(
             "Mozilla/5.0 (Linux; Android 13; Pixel 7) " +
             "AppleWebKit/537.36 (KHTML, like Gecko) " +
             "Chrome/124.0.0.0 Mobile Safari/537.36"
         );
-
-        // Configurações extras para passar verificações de humano
-        settings.setJavaScriptCanOpenWindowsAutomatically(true);
-        settings.setMediaPlaybackRequiresUserGesture(false);
-        settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-        settings.setAllowContentAccess(true);
-        settings.setAllowFileAccess(true);
-        settings.setSupportZoom(true);
-        settings.setBuiltInZoomControls(false);
-        settings.setDisplayZoomControls(false);
-        settings.setCacheMode(WebSettings.LOAD_DEFAULT);
 
         webView.setWebViewClient(new WebViewClient() {
             @Override
@@ -61,10 +61,47 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        webView.setWebChromeClient(new WebChromeClient());
+        // WebChromeClient com suporte a upload de arquivos
+        webView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public boolean onShowFileChooser(WebView webView,
+                    ValueCallback<Uri[]> filePathCallback,
+                    FileChooserParams fileChooserParams) {
+                if (fileUploadCallback != null) {
+                    fileUploadCallback.onReceiveValue(null);
+                }
+                fileUploadCallback = filePathCallback;
 
-        // Carrega tela inicial
+                Intent intent = fileChooserParams.createIntent();
+                try {
+                    startActivityForResult(intent, FILE_CHOOSER_REQUEST);
+                } catch (Exception e) {
+                    fileUploadCallback = null;
+                    return false;
+                }
+                return true;
+            }
+        });
+
         webView.loadUrl("file:///android_asset/index.html");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == FILE_CHOOSER_REQUEST) {
+            if (fileUploadCallback != null) {
+                Uri[] results = null;
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    String dataString = data.getDataString();
+                    if (dataString != null) {
+                        results = new Uri[]{Uri.parse(dataString)};
+                    }
+                }
+                fileUploadCallback.onReceiveValue(results);
+                fileUploadCallback = null;
+            }
+        }
     }
 
     @Override
